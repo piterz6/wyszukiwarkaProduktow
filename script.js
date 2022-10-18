@@ -3,6 +3,7 @@ const inputFieldValue = document.querySelector(".header__input");
 //getting whole list of items [li]
 const list = document.querySelectorAll("li");
 
+/*
 //inicializing search funcion:
 const searchList = (event) => {
   //connected on item where function addEventListener is triggered:
@@ -23,4 +24,20 @@ const searchList = (event) => {
 };
 
 //AddEventListner on Input field
+*/
+
+//można też użyć RegExp()
+
+const searchList = () => {
+  list.forEach((li) => {
+    //flagi do sprawdzenia w dokumentacji --> flaga i reprezentuje Case-insensitive search:
+    const match = new RegExp(inputFieldValue.value, "i").test(li.textContent);
+    if (!match) {
+      li.style.display = "none";
+    } else {
+      li.style.display = "block";
+    }
+  });
+};
+
 inputFieldValue.addEventListener("keyup", searchList);
